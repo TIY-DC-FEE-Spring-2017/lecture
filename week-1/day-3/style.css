@@ -1,0 +1,73 @@
+
+/* select ANY tag that has an href attribute that begins with "https" */
+[href^='https'] {
+    color: rgb(255, 0, 0);
+}
+/* ending with ".edu" */
+[href$='.edu'] {}
+/* contains "google" */
+[href*='google'] {}
+/* exactly equals "text" */
+fieldset.foo [type='text'] {}
+/* select any element that HAS a required attribute */
+[required] {
+    border: 1px solid rgb(255,0,0);
+}
+
+/* combine two selectors to reuse style declarations */
+nav a, input {
+    color: rgb(0,0,0);
+}
+
+/* select ONLY anchor tags that are first children of a header tag */
+header > a {}
+
+/* select ANY li that is a SIBLING of anything with a class of foo */
+.foo ~ li {}
+
+/* DO NOT DO THIS */
+* { margin:0; padding:0; }
+
+body {
+    background-color: gray;
+}
+main {
+    background-color: blue;
+    color: white;
+}
+main::after { /* pseudo-element */
+    /* if you float things and lose your background color, this is one way to get it back */
+    /* THIS IS A HACK! */
+    content: '';
+    display: block;
+    clear: both;
+}
+
+h1 {
+    font-size: 1em;
+    margin: 2em 1em;
+    padding: 0.5em 1em 2em 4em;
+    background-color: green;
+}
+
+aside {
+    border: 3px solid white;
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+
+p {
+    /* move the paragraph UNDER number FIVE (the last floated element) */
+    clear: both;
+}
+
+main {
+    /* any absolute positioned elements WITHIN me are relative to MY ORIGIN, not the viewport origin */
+    position: relative;
+}
+.special {
+    position: absolute;
+    top: 0;
+    right: 10%;
+}
