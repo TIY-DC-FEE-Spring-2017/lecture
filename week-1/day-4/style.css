@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+body {
+    font-family: Raleway, Arial, sans-serif;
+}
+
+header {
+    background-color: rgb(200,200,250);
+}
+
+.dropdown li:first-child {
+    /* find the first child of .dropdown that is ALSO an <li> */
+    background-color: red;
+    width: 170px;
+    height: 70px;
+    border-radius: 50%;
+    text-align: center;
+    opacity: 0.6;
+}
+
+.dropdown {
+    background-color: blue;
+    opacity: 0;
+    height: 0;
+    transition: all 1.5s linear;
+}
+
+.fa-bars {
+    color: black;
+    text-decoration: none;
+    font-size: 2em;
+    transition: transform 1s linear,color 4s linear;
+}
+
+.fa-bars:hover {
+    color: blue;
+    transform: rotate(180deg);
+}
+
+.fa-bars:hover ~ .dropdown {
+    opacity: 1;
+    height: 10em;
+}
