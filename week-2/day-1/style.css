@@ -1,0 +1,19 @@
+
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    height: 10em;
+}
+article {
+    flex: 0 0 20%;
+    background-color: red;
+    padding: 1em;
+    box-sizing: border-box;
+    /*float: left;
+    width: 25%;*/
+}
+.special {
+    align-self: flex-start;
+}
