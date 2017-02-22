@@ -1,0 +1,60 @@
+
+/* These were styles I used for the unit, font, and calc lecture */
+
+/*body {
+    margin: 3%;
+    font-size: 2em;
+}
+
+header {
+    border: 1px solid green;
+    width: 50%;
+
+    -ms-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -o-broder-radius: 1em;
+    border-radius: 1em;
+}
+
+h1 {
+    border: 1px solid red;
+    width: 50vw;
+}
+
+p {
+    line-height: 1.45em;
+    word-spacing: 1em;
+    letter-spacing: 0.3em;
+    float: left;
+    width: calc(33% - 2em);
+    margin: 0 1em;
+    padding: 1em;
+    border: 1px solid blue;
+    box-sizing: border-box;
+}*/
+
+h1 {
+    color: blue;
+    font-size: 1.2em;
+}
+
+@media screen and (min-width: 35em) {
+    p {
+        width: 50%;
+        float: left;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (min-width: 35em) and (max-width: 69.9em) {
+    h1 { background-color: gray; }
+}
+
+@media screen and (min-width: 70em) {
+    p {
+        width: 33%;
+    }
+}
