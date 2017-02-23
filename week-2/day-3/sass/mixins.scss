@@ -1,0 +1,8 @@
+
+
+
+@mixin square($boxSize) {
+    height: $boxSize;
+    width: $boxSize;
+    border: $themeBorder;
+}

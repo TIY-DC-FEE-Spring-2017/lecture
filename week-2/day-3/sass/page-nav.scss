@@ -1,0 +1,19 @@
+
+nav.pages {
+
+    ul {
+        display: flex;
+        list-style: none;
+    }
+
+    li {
+        @include square($navBoxSize);
+    }
+
+}
+
+.toc {
+    li {
+        @include square($navBoxSize * 2);
+    }
+}

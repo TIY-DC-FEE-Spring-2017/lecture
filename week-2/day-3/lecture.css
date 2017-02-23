@@ -1,0 +1,29 @@
+header.primary {
+  border: 1px solid #6464c8;
+  color: #646464;
+  font-size: 1.2em; }
+  header.primary h1 {
+    /* this will produce:  header h1 */
+    font-size: 1.3em; }
+  header.primary:hover {
+    /* combine me with my parent using NO space:  header:hover */
+    background-color: #646464;
+    color: white; }
+
+nav.pages ul {
+  display: flex;
+  list-style: none; }
+nav.pages li {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #6464c8; }
+
+.toc li {
+  height: 200px;
+  width: 200px;
+  border: 1px solid #6464c8; }
+
+@media screen and (min-width: 35em) {
+  /* tablet styles here... */ }
+
+/*# sourceMappingURL=lecture.css.map */

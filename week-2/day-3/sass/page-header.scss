@@ -1,0 +1,15 @@
+
+header.primary {
+    border: $themeBorder;
+    color: $headerThemeColor;
+    font-size: $headerHeadingSize;
+
+    h1 {  /* this will produce:  header h1 */
+        font-size: $headerHeadingSize + 0.1em;
+    }
+
+    &:hover { /* combine me with my parent using NO space:  header:hover */
+        background-color: $headerThemeColor;
+        color: $headerTextHover;
+    }
+}
