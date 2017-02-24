@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bootstrap</title>
+
+        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
+    </head>
+    <body>
+
+        <header>
+            <h1>
+                Week 2 Day 4
+            </h1>
+            <h2>Bootstrap!</h2>
+        </header>
+
+        <nav>
+            <ul class='nav nav-pills'>
+                <li class='active'><a href='#welcome'>Home</a></li>
+                <li><a href='#list-stuff'>List Stuff</a></li>
+                <li><a href='#create-stuff'>Create Stuff</a></li>
+            </ul>
+        </nav>
+
+        <main>
+
+            <p>
+                Welcome to my site!
+            </p>
+
+            <p class='alert alert-warning'>
+                This is a warning!!
+            </p>
+
+            <form>
+
+                <aside class='form-group'>
+                    <label for='email'>Email</label>
+                    <input type='email' class='form-control' placeholder='your email...' name='email' id='email'>
+                </aside>
+
+                <aside class='form-group'>
+                    <label for='experience'>Experience Level</label>
+                    <select class='form-control' name='experience' id='experience'>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                </aside>
+
+                <aside>
+                    <input type='reset' class='btn btn-danger'>
+                    <input type='submit' class='btn btn-primary'>
+                </aside>
+            </form>
+
+        </main>
+
+
+    </body>
+</html>
