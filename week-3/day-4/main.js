@@ -73,18 +73,25 @@ console.log( typeof( addNumbers(1, 1) ) ); // number
 
 let filesystem = require('fs');
 
-filesystem.readFile(
-    './data.csv',
-    function printOutTheContents(possibleError, contentsOfTheFile) {
-        if (possibleError) {
-            console.log(possibleError);
-            return;  // this will STOP the function (but only if there WAS an error)
-        }
+let contentsOfTheFile = filesystem.readFileSync('./data.csv');
+// the contents of the file are actually a Buffer
+// console.log( contentsOfTheFile.toString() );
+let stringValue = contentsOfTheFile.toString();
+let rows = stringValue.split('\n');
+console.log(rows);
 
-        // I know there was NO ERROR, because I got here...
-        let stringValue = contentsOfTheFile.toString();
-        let rows = stringValue.split('\n');
-        console.log(rows);
-
-    }
-);
+// The ASYNCHRONOUS way to do things
+// filesystem.readFile(
+//     './data.csv',
+//     function printOutTheContents(possibleError, contentsOfTheFile) {
+//         if (possibleError) {
+//             console.log(possibleError);
+//             return;  // this will STOP the function (but only if there WAS an error)
+//         }
+//
+//         // I know there was NO ERROR, because I got here...
+//         let stringValue = contentsOfTheFile.toString();
+//         let rows = stringValue.split('\n');
+//         console.log(rows);
+//     }
+// );
