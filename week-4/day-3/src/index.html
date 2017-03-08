@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>ToDo List</title>
+
+        <style>
+            /* DON'T DO THIS... use Sass and a CSS file */
+            .completed {
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+
+        <form id='new-todo' action='/foo' method='POST'>
+            <input type='text' name='todo-text' placeholder='What to do...'>
+            <input type='submit' value='Add'>
+        </form>
+
+        <ul>
+            <li>Buy milk</li>
+            <li>Pick up dry cleaning</li>
+        </ul>
+
+        <script src='todo.js'></script>
+        <script src='data.js'></script>
+
+    </body>
+</html>
