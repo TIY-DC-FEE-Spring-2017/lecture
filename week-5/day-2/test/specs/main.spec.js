@@ -37,30 +37,28 @@
         });
 
         describe('getData function', function() {
-            let server;
-
             beforeEach(function() {
-                server = sinon.fakeServer.create();
-                server.autoRespond = true;
-                server.respondWith(
-                    'GET',
-                    'https://api.github.com/users/jakerella/repos',
-                    [
-                        200,
-                        { 'Content-Type': 'application/json' },
-                        '[ { "name": "Jordan" }, { "name": "Julianne" } ]'
-                    ]
-                );
+                fetchMock.mock({
+                    method: 'GET',
+                    matcher: 'https://api.github.com/users/jakerella/repos',
+                    response: {
+                        status: 200,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify([
+                            { name: 'Jordan' },
+                            { name: 'Julianne' }
+                        ])
+                    }
+                });
             });
 
             afterEach(function() {
-                server.restore();
+                fetchMock.restore();
             });
 
             it('should get data given a username', function(tellMochaWeAreDone) {
 
                 let result = window.lecture.getData('jakerella');
-                // expect( result ).to.be.an('object');
                 expect( result.then ).to.be.a('function');
                 expect( result.catch ).to.be.a('function');
 
