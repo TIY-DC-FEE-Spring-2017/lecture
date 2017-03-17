@@ -34,6 +34,9 @@
         }
         return fetch('https://api.github.com/users/' + username + '/repos')
             .then(function handleResponse(res) {
+                if (res.status < 200 || res.status > 299) {
+                    return Promise.reject('Non-200 status code!');
+                }
                 return res.json();
             });
     };

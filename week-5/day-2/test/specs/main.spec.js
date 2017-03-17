@@ -50,6 +50,19 @@
                         ])
                     }
                 });
+
+                fetchMock.mock({
+                    method: 'GET',
+                    matcher: 'https://api.github.com/users/hjhsadgfjkdljfh/repos',
+                    response: {
+                        status: 404,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          "message": "Not Found",
+                          "documentation_url": "https://developer.github.com/v3"
+                        })
+                    }
+                });
             });
 
             afterEach(function() {
@@ -85,6 +98,22 @@
                     .catch(function(err) {
                         expect(err).to.be.a('string');
                         done();
+                    });
+            });
+
+            it('should handle 404 errors given a bad username', function(doneCallbackFn) {
+                let result = window.lecture.getData('hjhsadgfjkdljfh');
+                expect(result.then).to.be.a('function');
+                expect(result.catch).to.be.a('function');
+
+                result
+                    .then(function() {
+                        // tell mocha that I'm done with async stuff AND the test failed
+                        doneCallbackFn('I should not have gotten into the then() for this test');
+                    })
+                    .catch(function(err) {
+                        expect(err).to.be.a('string');
+                        doneCallbackFn();
                     });
             });
 
