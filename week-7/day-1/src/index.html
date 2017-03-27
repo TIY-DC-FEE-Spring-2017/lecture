@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='email'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Angular Basics</title>
+    </head>
+    <body>
+        <h1>Angular Basics</h1>
+
+        <p>one plus one is {{ 1 + 1 }}</p>
+
+        <main ng-controller='EmailController as foobar'>
+            <h2>Welcome {{foobar.name}} it is {{foobar.getShortDate()}}</h2>
+
+            <button ng-click='foobar.checkEmail()'>Check Email</button>
+
+            <ul>
+                <li ng-repeat='email in foobar.emails | orderBy:"-receiveTime"'
+                    ng-hide='email.sender==="Mom"'
+                    ng-class='{ important: (email.sender==="Samara") }'>
+                    <h3>From: {{email.sender}}</h3>
+                    <p>Subject: {{email.subject}}</p>
+                    <!--  pass this data  throught the `date` filter and use the provided format "MMM d" (which we call an option) -->
+                                    <!--  someData | filterName:"some option" -->
+                    <time>Received: {{email.receiveTime | date:"MMM d"}}</time>
+                </li>
+            </ul>
+
+        </main>
+
+        <footer ng-controller='EmailController as emailCtrl'>
+            <p>Thanks for stopping by {{emailCtrl.name}}</p>
+        </footer>
+
+        <!-- this one MUST be first -->
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+        <!-- this one MUST come after angular, and before OUR code -->
+        <script src='/js/email.module.js'></script>
+        <!-- all OUR other JS code, in any order -->
+        <script src='/js/email.controller.js'></script>
+
+    </body>
+</html>
