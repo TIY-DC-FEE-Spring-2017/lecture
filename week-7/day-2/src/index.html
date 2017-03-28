@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='bb'>
+    <head>
+        <meta charset='utf-8'>
+        <title>BrickBuster Movies</title>
+
+        <style>
+        /* select ALL tags that have the ng-cloak attribute (regardless of the value of that attribute) */
+        [ng-cloak] {
+            display: none;
+        }
+        input.ng-invalid.ng-touched {
+            border: 1px solid #ff0000;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>BrickBuster Movies</h1>
+
+        <main ng-controller='MovieController as movieCtrl'>
+
+            <form
+                name='addmovie'
+                ng-submit='addmovie.$valid && movieCtrl.addMovie(movieCtrl.newMovie)'
+                novalidate>  <!-- this is NOT angular... we're telling the browser not to do validation -->
+
+                <input
+                    type='text'
+                    name='title'
+                    placeholder='Movie title'
+                    required
+                    ng-model='movieCtrl.newMovie.title'>
+
+                <select
+                    ng-cloak
+                    ng-controller='GenreController as genreCtrl'
+                    ng-model='movieCtrl.newMovie.genre'>
+                    <option ng-repeat='genre in genreCtrl.genres' value='{{genre.id}}'>{{genre.name}}</option>
+                </select>
+
+                <input type='submit' value='Add Movie'>
+
+                <p ng-show='addmovie.title.$touched && !addmovie.title.$valid'>
+                    You must add a title!
+                </p>
+
+                <p ng-cloak ng-show='movieCtrl.newMovie.title.length'>You are about to add {{movieCtrl.newMovie.title}}</p>
+            </form>
+
+            <ul ng-cloak ng-controller='GenreController as genreCtrl'>
+                <li ng-repeat='movie in movieCtrl.movies'>
+                    {{movie.title}} ({{genreCtrl.getGenreName(movie.genre)}})
+                </li>
+            </ul>
+
+        </main>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+        <script src='/js/bb.module.js'></script>
+        <script src='/js/movie.controller.js'></script>
+        <script src='/js/genre.controller.js'></script>
+
+    </body>
+</html>
