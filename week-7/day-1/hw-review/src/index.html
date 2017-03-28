@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='shop'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Shopular</title>
+
+        <meta name='description' content=''>
+        <meta name='author' content=''>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <link href='' rel='stylesheet'>
+    </head>
+    <body>
+        <h1>Shopular</h1>
+        <main ng-controller='InventoryController as invenCtrl'>
+            <table>
+                <tr ng-repeat='item in invenCtrl.items'>
+                    <td>{{item.name}}</td>
+                    <td>{{invenCtrl.itemPrice(item) | currency:'$'}}</td>
+                    <td><strong ng-show='item.discount'>DISCOUNT</strong> {{item.discount}}</td>
+
+                </tr>
+            </table>
+        </main>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+        <script src='/js/shop.module.js'></script>
+        <script src='/js/inventory.controller.js'></script>
+    </body>
+</html>
