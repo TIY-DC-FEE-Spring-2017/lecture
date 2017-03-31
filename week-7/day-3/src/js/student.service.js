@@ -16,7 +16,12 @@
          * @return {void}
          */
         function addStudent(student) {
-            // TODO: data audits
+            if (typeof(student) !== 'object') {
+                return;
+            }
+
+            // TODO: MORE data audits
+
             students.push({
                 name: student.name,
                 grade: student.grade,
