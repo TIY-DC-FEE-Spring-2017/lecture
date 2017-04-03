@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='thoughter'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Thoughter</title>
+    </head>
+    <body>
+        <header>
+            <h1>Thoughter</h1>
+        </header>
+
+        <main ng-controller='ThoughtController as thoughtCtrl'>
+            <form>
+                <input type='text' placeholder='What are you thinking?' required>
+                <input type='submit' value='Post Thought'>
+            </form>
+
+            <p ng-show='thoughtCtrl.hasError'>
+                {{thoughtCtrl.message}}
+            </p>
+
+            <section>
+                <p ng-repeat='thought in thoughtCtrl.thoughts'>
+                    {{thought.content}}
+                </p>
+
+                <button ng-click='thoughtCtrl.getThoughts()'>See More</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; Jordan Kasper 2017</p>
+        </footer>
+
+        <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
+        <script src='/js/thoughter.module.js'></script>
+        <script src='/js/thought.service.js'></script>
+        <script src='/js/thought.controller.js'></script>
+    </body>
+</html>
