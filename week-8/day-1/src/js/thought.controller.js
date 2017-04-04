@@ -12,6 +12,7 @@
         vm.message = null;
         vm.thoughts = [];
         vm.page = 0;
+        vm.newThought = {};
 
         vm.getThoughts = function getThoughts() {
             vm.page++;
@@ -30,8 +31,23 @@
                         vm.message = 'There was a nasty server error!';
                     }
                 });
-        }
+        };
         vm.getThoughts();
+
+        /**
+         * Adds a thought from the user and adds the new thought
+         * to the page at the top. Uses the ThoughtService for
+         * actual persistence of data.
+         * @param {String} text  The content of the new thought REQUIRED
+         * @return {void}
+         */
+        vm.addThought = function addThought(text) {
+            ThoughtService.addThought(text)
+                .then(function addDataToPage(data) {
+                    vm.thoughts.unshift(data);
+                });
+                // TODO catch with a message
+        };
 
     }
 
