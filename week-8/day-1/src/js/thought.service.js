@@ -22,7 +22,7 @@
             let pageSize = 10;
 
             return $http({
-                url: 'http://thoughter.herokuapp.com/api/Thoughts?filter={"limit":' + pageSize + ',"offset":' + (page * pageSize) + '}',
+                url: 'http://thoughter.herokuapp.com/api/Thoughts?filter={"order": "createTime DESC", "limit":' + pageSize + ',"offset":' + (page * pageSize) + '}',
                 method: 'get'
             })
             .then(function handleResponse(response) {

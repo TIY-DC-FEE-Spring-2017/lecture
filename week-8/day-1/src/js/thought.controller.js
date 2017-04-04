@@ -4,14 +4,14 @@
     angular.module('thoughter')
         .controller('ThoughtController', ThoughtController);
 
-    ThoughtController.$inject = ['ThoughtService'];
-    function ThoughtController(ThoughtService) {
+    ThoughtController.$inject = ['$state', 'ThoughtService'];
+    function ThoughtController($state, ThoughtService) {
         let vm = this;
 
         vm.hasError = false;
         vm.message = null;
         vm.thoughts = [];
-        vm.page = 0;
+        vm.page = -1;
         vm.newThought = {};
 
         vm.getThoughts = function getThoughts() {
@@ -43,8 +43,8 @@
          */
         vm.addThought = function addThought(text) {
             ThoughtService.addThought(text)
-                .then(function addDataToPage(data) {
-                    vm.thoughts.unshift(data);
+                .then(function changeStates(data) {
+                    $state.go('home');
                 });
                 // TODO catch with a message
         };

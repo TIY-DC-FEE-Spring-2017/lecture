@@ -1,0 +1,14 @@
+
+<h2>All Thoughts</h2>
+
+<p ng-show='thoughtCtrl.hasError'>
+    {{thoughtCtrl.message}}
+</p>
+
+<section>
+    <p ng-repeat='thought in thoughtCtrl.thoughts'>
+        {{thought.content}}
+    </p>
+
+    <button ng-click='thoughtCtrl.getThoughts()'>See More</button>
+</section>
