@@ -24,11 +24,22 @@
                             Create
                         </a>
                     </li>
+                    <li>
+                        <a ui-sref='login'>
+                            Login
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </header>
 
-        <main ui-view></main>
+        <main>
+
+            <aside>Sidebar</aside>
+
+            <section ui-view></section>
+
+        </main>
 
         <footer>
             <p>&copy; Jordan Kasper 2017</p>
@@ -39,5 +50,7 @@
         <script src='/js/thoughter.module.js'></script>
         <script src='/js/thought.service.js'></script>
         <script src='/js/thought.controller.js'></script>
+        <script src='/js/user.controller.js'></script>
+        <script src='/js/user.service.js'></script>
     </body>
 </html>

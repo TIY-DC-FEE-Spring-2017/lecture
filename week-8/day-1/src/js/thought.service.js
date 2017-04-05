@@ -4,14 +4,16 @@
     angular.module('thoughter')
         .factory('ThoughtService', ThoughtService);
 
-    ThoughtService.$inject = ['$http'];
+    ThoughtService.$inject = ['$http', 'UserService'];
 
     /**
      * Creates a new ThoughtService singleton
      * @param {Function} $http The service for making ajax calls
      * @return {Object}        The service's API methods
      */
-    function ThoughtService($http) {
+    function ThoughtService($http, UserService) {
+
+        console.log('creating a ThoughtService');
 
         /**
          * Gets thoughts from the data API
@@ -42,11 +44,15 @@
                 return Promise.reject('You need to provide the text of the new thought.');
             }
 
+            // TODO: check to see if I have a token?
+            //       if not, no need to make http call
+
             return $http({
                 url: 'http://thoughter.herokuapp.com/api/Thoughts',
                 method: 'post',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': UserService.getToken()
                 },
                 data: {
                     content: text
@@ -57,9 +63,27 @@
             });
         }
 
+        /**
+         * Get a single thought from the API based on the ID
+         * @param {String} id The single thought to retrieve
+         * @return {Promise}
+         */
+        function getThought(id) {
+            // TODO: data audits
+
+            return $http({
+                url: 'https://thoughter.herokuapp.com/api/Thoughts/' + id
+            })
+            .then(function handleResponse(response) {
+                // I COULD do other things in here...
+                return response.data;
+            });
+        }
+
         return {
             getThoughts: getThoughts,
-            addThought: addThought
+            addThought: addThought,
+            getThought: getThought
         };
     }
 

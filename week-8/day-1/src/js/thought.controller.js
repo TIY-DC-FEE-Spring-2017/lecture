@@ -4,8 +4,12 @@
     angular.module('thoughter')
         .controller('ThoughtController', ThoughtController);
 
-    ThoughtController.$inject = ['$state', 'ThoughtService'];
-    function ThoughtController($state, ThoughtService) {
+    ThoughtController.$inject = ['$state', '$stateParams', 'ThoughtService'];
+    // The order of your injection array IS THE ORDER of your arguments
+    function ThoughtController($state, $stateParams, ThoughtService) {
+
+        console.log('creating a new ThoughtController', $stateParams.id);
+
         let vm = this;
 
         vm.hasError = false;
@@ -32,7 +36,6 @@
                     }
                 });
         };
-        vm.getThoughts();
 
         /**
          * Adds a thought from the user and adds the new thought
@@ -42,12 +45,30 @@
          * @return {void}
          */
         vm.addThought = function addThought(text) {
+
+            // TODO: add data audits!!
+
             ThoughtService.addThought(text)
                 .then(function changeStates(data) {
-                    $state.go('home');
+                    $state.go('single-thought', { id: data.id });
                 });
                 // TODO catch with a message
         };
+
+        vm.getThought = function getThought(id) {
+            console.log('getting single thought', id);
+            ThoughtService.getThought(id)
+                .then(function handleThoughtData(thought) {
+                    vm.thought = thought;
+                });
+                // TODO: catch to handle any service/API errors!!
+        };
+
+        if ($stateParams.id) {
+            vm.getThought( $stateParams.id );
+        } else {
+            vm.getThoughts();
+        }
 
     }
 
