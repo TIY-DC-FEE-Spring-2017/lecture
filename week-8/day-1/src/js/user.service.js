@@ -7,7 +7,10 @@
     UserService.$inject = ['$http'];
     function UserService($http) {
 
-        let token;
+        let token = localStorage.getItem('token');
+        // we are able to use this variable LATER
+        // inside the functions below, because functions
+        // in JavaScript are CLOSURES
 
         function getToken() {
             return token;
@@ -15,6 +18,7 @@
 
         function logout() {
             token = null;
+            localStorage.removeItem('token');
 
             // TODO: send an API call to the server to logout
             //       but we have to tell the server who we are
@@ -32,6 +36,7 @@
             // TODO: this is where we do the Ajax call!
             //       and then HOLD ONTO the token given back
             token = '123456787654323456786543212345';
+            localStorage.setItem('token', token);
 
             // this is us being lazy and NOT calling the API
             // and instead using fake data for now...
@@ -41,6 +46,7 @@
 
         return {
             login: login,
+            logout: logout,
             getToken: getToken
         };
     }

@@ -7,7 +7,7 @@
     <body>
         <header>
             <h1>Thoughter</h1>
-            <nav>
+            <nav ng-controller='NavController as navCtrl'>
                 <ul>
                     <li>
                         <a ui-sref='home'>
@@ -19,14 +19,19 @@
                             About
                         </a>
                     </li>
-                    <li>
+                    <li ng-show='navCtrl.isLoggedIn()'>
                         <a ui-sref='createThought'>
                             Create
                         </a>
                     </li>
-                    <li>
+                    <li ng-hide='navCtrl.isLoggedIn()'>
                         <a ui-sref='login'>
                             Login
+                        </a>
+                    </li>
+                    <li ng-show='navCtrl.isLoggedIn()'>
+                        <a href='#' ng-click='navCtrl.logout()'>
+                            Logout
                         </a>
                     </li>
                 </ul>
@@ -52,5 +57,6 @@
         <script src='/js/thought.controller.js'></script>
         <script src='/js/user.controller.js'></script>
         <script src='/js/user.service.js'></script>
+        <script src='/js/nav.controller.js'></script>
     </body>
 </html>
