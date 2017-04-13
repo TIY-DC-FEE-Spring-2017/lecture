@@ -2,7 +2,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+require('./database-setup.js');
+
 let app = express();
+
+console.log('process id', process.pid);
+// process.exit();
+// console.log( 'ENVIRONMENT VARIABLES', process.env );
+console.log( 'Database location', process.env.MY_DB_LOCATION );
+
+console.log('Where am I?', __dirname);
+app.use(express.static(__dirname + '/../client'));
 
 app.use(bodyParser.json());
 app.use(require('./middleware/log-stuff.middleware.js'));
